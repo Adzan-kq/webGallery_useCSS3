@@ -1,0 +1,217 @@
+/* fonts */
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('../fonts/bebasneue-bold-webfont.woff') format('woff');
+}
+
+/* Style */
+body{
+    font: 18px/36px 'BebasNeue', 'Arial Narror', arial, sans-serif;
+    background-color: rgb(12, 12, 12);
+    color: white;
+}
+
+body h1{
+    text-align: center;
+    margin: 30px 0;
+    font-size: 45px;
+    text-shadow: 1px 1px 1px gray;
+}
+
+.container{
+    margin: auto;
+    padding: 30px 35px;
+    width: 900px;
+    background-color: #ddd;
+    box-shadow: 0 0 4px 1px rgb(99, 98, 98);
+    border-radius: 5px;
+    position: relative;
+}
+
+.gallery li{
+    width: 140px;
+    height: 140px;
+    border: 5px solid #555;
+    float: left;
+    margin-right: 30px;
+}
+
+.gallery li,
+.gallery a img,
+.gallery li span{
+    border-radius: 50%;
+}
+
+.gallery li span{
+    display: block;
+    width: 140px;
+    height: 140px;
+    background-color: rgba(200, 200, 200, .5);
+    position: absolute;
+    top: 0;
+    margin: 35px 0;
+    text-align: center;
+    line-height: 140px;
+    color: #000;
+    opacity: 0;
+    transition: .4s;
+}
+
+.gallery li a:hover span{
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+}
+
+.clear{
+    clear: both;
+}
+
+/* Overlay */
+.overlay{
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(33, 32, 36, 0);
+    z-index: 9999;
+    transition: .7s;
+    text-align: center;
+    padding: 90px 0;
+}
+
+.overlay:target{
+    width: auto;
+    height: auto;
+    bottom: 0;
+    right: 0;
+    background: rgba(33, 32, 36, 0.7);
+}
+
+.overlay img{
+    max-height: 100%;
+    float: left;
+    margin-left: 120px;
+}
+
+.overlay .teks{
+    float: left;
+    background-color: white;
+    color: black;
+    width: 35%;
+    height: 100%;
+    opacity: 0;
+    padding: 0 18px;
+}
+
+.overlay .teks h1{
+    text-shadow: 1px 1px 1px gray;
+}
+
+.overlay .teks p{
+    text-align: left;
+    font-size: 14px;
+}
+
+.overlay .teks .judul{
+    font-size: 35px;
+}
+
+.overlay:target img{
+    animation: muncul-gambar .7s;
+}
+
+.overlay:target .teks{
+    animation: muncul-teks 1s 0.8s forwards;
+}
+
+.close{
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    margin-left: -30px;
+    color: white;
+    background-color: rgb(240, 27, 27);
+    border: 1px solid white;
+    line-height: 14px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.overlay:target .close{
+    animation: close 1s;
+}
+
+.overlay .next,
+.overlay .prev{
+    background-image: url(../img/next.png);
+    width: 40px;
+    height: 63px;
+    position: absolute;
+    top: 40%;
+    margin-left: -30px;
+    text-indent: 999px;
+    -webkit-filter: drop-shadow(2px 2px 1px black);
+    filter: drop-shadow(2px 2px 1px black);
+    opacity: 0;
+}
+
+.overlay .prev{
+    background-image: url(../img/prev.png);
+    margin-left: -17cm;
+}
+
+.overlay:target .next,
+.overlay:target .prev{
+    animation: next-prev .5s 1s forwards;
+}    
+
+/* Animation */
+@keyframes next-prev{
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes muncul-gambar{
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes muncul-teks{
+    0% {
+        opacity: 0;
+        margin-left: -130px;
+    }
+
+    100%{
+        opacity: 1;
+        margin-left: 0;
+    }
+}
+
+@keyframes close{
+    0% {
+        opacity: 0;
+        margin-top: -20px;
+    }
+
+    100%{
+        opacity: 1;
+        margin-top: 0;
+    }
+}
